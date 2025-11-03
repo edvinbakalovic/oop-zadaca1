@@ -25,214 +25,216 @@ int main(){
 
   int izbor;
 
-  std::cout<<"Welcome to Unit converter. Please enter one of the following options:"<<std::endl;
-  std::cout<<"1. Temperature"<<std::endl;
-  std::cout<<"2. Speed"<<std::endl;
-  std::cout<<"3. Length"<<std::endl;
-  std::cout<<"4. Weight"<<std::endl;
-  std::cout<<"5. Fuel economy"<<std::endl;
-  std::cout<<"Your choice: ";
+  std::cout<<"Dobro dosli u pretvarac jedimica. Molimo unesite jednu od ponudjenih opcija:"<<std::endl;
+  std::cout<<"1. Temperatura"<<std::endl;
+  std::cout<<"2. Brzina"<<std::endl;
+  std::cout<<"3. Duzina"<<std::endl;
+  std::cout<<"4. Tezina"<<std::endl;
+  std::cout<<"5. Potrosnja goriva"<<std::endl;
+  std::cout<<"Vas izbor: ";
   std::cin>>izbor;
   switch (izbor) {
 
-    // ---------------- TEMPERATURE ----------------
     case 1:
-      std::cout<<"Please choose converter:"<<std::endl;
-      std::cout<<"1. Celsius to Fahrenheit"<<std::endl;
-      std::cout<<"2. Fahrenheit to Celsius"<<std::endl;
-      std::cout<<"3. Celsius to Kelvin"<<std::endl;
-      std::cout<<"4. Kelvin to Celsius"<<std::endl;
-      std::cout<<"5. Fahrenheit to Kelvin"<<std::endl;
-      std::cout<<"6. Kelvin to Fahrenheit"<<std::endl;
-      std::cout<<"Your choice: ";
+      std::cout<<"Molimo odaberite pretvarac:"<<std::endl;
+      std::cout<<"1. Celzijus u Farenhajt"<<std::endl;
+      std::cout<<"2. Farenhajt u Cellzijus"<<std::endl;
+      std::cout<<"3. Celzijus u Kelvin"<<std::endl;
+      std::cout<<"4. Kelvin u Celzijus"<<std::endl;
+      std::cout<<"5. Farenhajt u Kelvin"<<std::endl;
+      std::cout<<"6. Keelvin u Farenhajt"<<std::endl;
+      std::cout<<"Vas izbor: ";
       int temperaturski_izbor;
       std::cin>>temperaturski_izbor;
       double degrees;
       switch (temperaturski_izbor) {
         case 1:
-          std::cout<<"\nEnter temperature in Celsius: ";
+          std::cout<<"\nUnesite temperaturu u Celzijus: ";
           std::cin>>degrees;
-          std::cout<<degrees<<" Celsius is "<<degrees*1.8+32<<" Fahrenheit"<<std::endl;
+          if(degrees<-273.15){std::cout<<"GRESKA: Temperatura ne moze biti ispod -273.15 Celzijus!\n";break;}
+          std::cout<<degrees<<" Celzijus je "<<degrees*1.8+32<<" Farenhajt"<<std::endl;
         break;
 
         case 2:
-          std::cout<<"\nEnter temperature in Fahrenheit: ";
+          std::cout<<"\nUnesite temperaturu u Farenhajt: ";
           std::cin>>degrees;
-          std::cout<<degrees<<" Fahrenheit is "<<(degrees-32)/1.8<<" Celsius"<<std::endl;
+          std::cout<<degrees<<" Farenhajt je "<<(degrees-32)/1.8<<" Celzijus"<<std::endl;
         break;
 
         case 3:
-          std::cout<<"\nEnter temperature in Celsius: ";
+          std::cout<<"\nUnesite temperaturu u Celzijus: ";
           std::cin>>degrees;
-          std::cout<<degrees<<" Celsius is "<<degrees+Temperature::celsiusKelvinCoeff<<" Kelvin"<<std::endl;
+          if(degrees<-273.15){std::cout<<"GRESKA: Temperatura ne moze biti ispod -273.15 Celzijus!\n";break;}
+          std::cout<<degrees<<" Celzijus jr "<<degrees+Temperature::celsiusKelvinCoeff<<" Kelvin"<<std::endl;
         break;
 
         case 4:
-          std::cout<<"\nEnter temperature in Kelvin: ";
+          std::cout<<"\nUnesite temperaturu u Kelvin: ";
           std::cin>>degrees;
-          std::cout<<degrees<<" Kelvin is "<<degrees-Temperature::celsiusKelvinCoeff<<" Celsius"<<std::endl;
+          if(degrees<0){std::cout<<"GRESKA: Negativna vrijednost Kelvina ne postoji!\n";break;}
+          std::cout<<degrees<<" Kelvin je "<<degrees-Temperature::celsiusKelvinCoeff<<" Celzijus"<<std::endl;
         break;
 
         case 5:
-          std::cout<<"\nEnter temperature in Fahrenheit: ";
+          std::cout<<"\nUnesite temperaturu u Farenhajt: ";
           std::cin>>degrees;
-          std::cout<<degrees<<" Fahrenheit is "<<(degrees-32)*0.5556+Temperature::celsiusKelvinCoeff<<" Kelvin"<<std::endl;
+          double rez;
+          rez=(degrees-32)*0.5556+Temperature::celsiusKelvinCoeff;
+          if(rez<0){std::cout<<"GRESKA: Rezultat u Kelvin ne moze biti negativan!\n";break;}
+          std::cout<<degrees<<" Farenhajt je "<<rez<<" Kelvin"<<std::endl;
         break;
 
         case 6:
-          std::cout<<"\nEnter temperature in Kelvin: ";
+          std::cout<<"\nUnesite temperaturu u Kelvin: ";
           std::cin>>degrees;
-          std::cout<<degrees<<" Kelvin is "<<(degrees-Temperature::celsiusKelvinCoeff)*1.8+32<<" Fahrenheit"<<std::endl;
+          if(degrees<0){std::cout<<"GRESKA: Negativna vrijednost Kelvina ne postoji!\n";break;}
+          std::cout<<degrees<<" Kelvin je "<<(degrees-Temperature::celsiusKelvinCoeff)*1.8+32<<" Farenhajt"<<std::endl;
         break;
 
         default:
-        std::cout<<"Wrong choice!"<<std::endl;
+        std::cout<<"Pogresan izborr!"<<std::endl;
         break; 
       }
       break;
 
-    // ---------------- SPEED ----------------
     case 2:
-      std::cout<<"Please choose converter: "<<std::endl;
-      std::cout<<"1. Mile to kmH"<<std::endl;
-      std::cout<<"2. kmH to Mile"<<std::endl;
-      std::cout<<"Your choice: ";
+      std::cout<<"Molimo odaberite pretvarac: "<<std::endl;
+      std::cout<<"1. Milja u km/h"<<std::endl;
+      std::cout<<"2. km/h u Milju"<<std::endl;
+      std::cout<<"Vas izbor: ";
       int izbor_brzine;
       std::cin>>izbor_brzine;
       double speed;
       switch (izbor_brzine) {
         case 1:
-          std::cout<<"Enter speed in Mile: ";
+          std::cout<<"Unesite brzinu u Miljama: ";
           std::cin>>speed;
-          std::cout<<speed<<" in Mile is "<<speed*Speed::mileToKmCoeff<<" kmH"<<std::endl;
+          std::cout<<speed<<" Milja je "<<speed*Speed::mileToKmCoeff<<" km/h"<<std::endl;
         break;
 
         case 2:
-         std::cout<<"Enter speed in kmH: ";
+         std::cout<<"Unesite brzinu u km/h: ";
          std::cin>>speed;
-         std::cout<<speed<<" in kmH is "<< speed/Speed::mileToKmCoeff<<" Mile"<<std::endl;
+         std::cout<<speed<<" km/h je "<< speed/Speed::mileToKmCoeff<<" Milja"<<std::endl;
         break;
 
         default:
-         std::cout<<"Wrong choice!"<<std::endl;
+         std::cout<<"Pogresan izbor!"<<std::endl;
         break;
       }
       break;
 
-    // ---------------- LENGTH ----------------
     case 3:
-      std::cout<<"Please choose converter: "<<std::endl;
-      std::cout<<"1. Light-year to Kilometer"<<std::endl;
-      std::cout<<"2. Kilometer to Light-year"<<std::endl;
-      std::cout<<"3. Foot to Meter"<<std::endl;
-      std::cout<<"4. Meter to Foot"<<std::endl;
-      std::cout<<"5. Inch to Centimeter"<<std::endl;
-      std::cout<<"6. Centimeter to Inch"<<std::endl;
-      std::cout<<"Your choice: ";
+      std::cout<<"Molimo odaberite pretvarac: "<<std::endl;
+      std::cout<<"1. Svjetlosna godina u Kilometar"<<std::endl;
+      std::cout<<"2. Kilometar u Svjetlosnu godinu"<<std::endl;
+      std::cout<<"3. Stopu u Metar"<<std::endl;
+      std::cout<<"4. Metar u Stopu"<<std::endl;
+      std::cout<<"5. Inc u Centimetar"<<std::endl;
+      std::cout<<"6. Centimetar u Inč"<<std::endl;
+      std::cout<<"Vas izbor: ";
       int izbor_duzine;
       std::cin>>izbor_duzine;
       long double length;
       switch (izbor_duzine) {
         case 1:
-          std::cout<<"Enter length in Light-years: ";
+          std::cout<<"Unesite duzinu u Svjetlosnim godinama: ";
           std::cin>>length;
-          std::cout<<length<<" Light-years is "<<length*Length::lightYearKmCoeff<<" Kilometers"<<std::endl;
+          std::cout<<length<<" Svjetlosnih godina je "<<length*Length::lightYearKmCoeff<<" Kilometara"<<std::endl;
         break;
 
         case 2:
-          std::cout<<"Enter length in Kilometers: ";
+          std::cout<<"Unesite duzinu u Kilometrima: ";
           std::cin>>length;
-          std::cout<<length<<" Kilometers is "<<length/Length::lightYearKmCoeff<<" Light-years"<<std::endl;
+          std::cout<<length<<" Kilometara je "<<length/Length::lightYearKmCoeff<<" Svjetlosnih godina"<<std::endl;
         break;
 
         case 3:
-          std::cout<<"Enter length in Foot: ";
+          std::cout<<"Unesite duzinu u Stopama: ";
           std::cin>>length;
-          std::cout<<length<<" Foot is "<<length*Length::footMeterCoeff<<" Meters"<<std::endl;
+          std::cout<<length<<" Stopi je "<<length*Length::footMeterCoeff<<" Metara"<<std::endl;
         break;
 
         case 4:
-          std::cout<<"Enter length in Meters: ";
+          std::cout<<"Unesite duzinu u Metrima: ";
           std::cin>>length;
-          std::cout<<length<<" Meters is "<<length/Length::footMeterCoeff<<" Foot"<<std::endl;
+          std::cout<<length<<" Metara je "<<length/Length::footMeterCoeff<<" Stopi"<<std::endl;
         break;
 
         case 5:
-          std::cout<<"Enter length in Inch: ";
+          std::cout<<"Unesite duzinu u Inč: ";
           std::cin>>length;
-          std::cout<<length<<" Inch is "<<length*Length::inchCmCoeff<<" Centimeters"<<std::endl;
+          std::cout<<length<<" Inča je "<<length*Length::inchCmCoeff<<" Centimetara"<<std::endl;
         break;
 
         case 6:
-          std::cout<<"Enter length in Centimeters: ";
+          std::cout<<"Unesite duzinu u Centimetrima: ";
           std::cin>>length;
-          std::cout<<length<<" Centimeters is "<<length/Length::inchCmCoeff<<" Inch"<<std::endl;
+          std::cout<<length<<" Centimetara je "<<length/Length::inchCmCoeff<<" Inča"<<std::endl;
         break;
 
         default:
-          std::cout<<"Wrong choice!"<<std::endl;
+          std::cout<<"Pogresan izbor!"<<std::endl;
         break;
       }
       break;
 
-    // ---------------- WEIGHT ----------------
     case 4:
-      std::cout<<"Please choose converter: "<<std::endl;
-      std::cout<<"1. Kilogram to Pound"<<std::endl;
-      std::cout<<"2. Pound to Kilogram"<<std::endl;
-      std::cout<<"Your choice: ";
+      std::cout<<"Molimo odaberite pretvarac:"<<std::endl;
+      std::cout<<"1. Kilogram u Funtu"<<std::endl;
+      std::cout<<"2. Funtu u Kilogram"<<std::endl;
+      std::cout<<"Vas izbor: ";
       int izbor_tezine;
       std::cin>>izbor_tezine;
       double weight;
       switch (izbor_tezine) {
         case 1:
-          std::cout<<"Enter weight in Kilograms: ";
+          std::cout<<"Unesite tezinu u Kilogramima: ";
           std::cin>>weight;
-          std::cout<<weight<<" Kilograms is "<<weight*Weight::kgLbCoeff<<" Pounds"<<std::endl;
+          std::cout<<weight<<" Kilograma je "<<weight*Weight::kgLbCoeff<<" Funti"<<std::endl;
         break;
 
         case 2:
-          std::cout<<"Enter weight in Pounds: ";
+          std::cout<<"Unesite tezinu u Funtama: ";
           std::cin>>weight;
-          std::cout<<weight<<" Pounds is "<<weight/Weight::kgLbCoeff<<" Kilograms"<<std::endl;
+          std::cout<<weight<<" Funti je "<<weight/Weight::kgLbCoeff<<" Kilograma"<<std::endl;
         break;
 
         default:
-          std::cout<<"Wrong choice!"<<std::endl;
+          std::cout<<"Pogresan izbor!"<<std::endl;
         break;
       }
       break;
 
-    // ---------------- FUEL ECONOMY ----------------
     case 5:
-      std::cout<<"Please choose converter: "<<std::endl;
-      std::cout<<"1. Liters per 100km to Miles per Gallon"<<std::endl;
-      std::cout<<"2. Miles per Gallon to Liters per 100km"<<std::endl;
-      std::cout<<"Your choice: ";
+      std::cout<<"Molimo odaberite pretvarac:"<<std::endl;
+      std::cout<<"1. Litara na 100km u Milje po galonu"<<std::endl;
+      std::cout<<"2. Milje po galonu u Litara na 100km"<<std::endl;
+      std::cout<<"Vas izbor: ";
       int izbor_goriva;
       std::cin>>izbor_goriva;
       double fuel;
       switch (izbor_goriva) {
         case 1:
-          std::cout<<"Enter fuel consumption in Liters per 100km: ";
+          std::cout<<"Unesite potrosnju u L/100km: ";
           std::cin>>fuel;
-          std::cout<<fuel<<" Liters per 100km is "<<Fuel::literPer100kmToMpgCoeff/fuel<<" Miles per Gallon"<<std::endl;
+          std::cout<<fuel<<" L/100km je "<<Fuel::literPer100kmToMpgCoeff/fuel<<" MPG"<<std::endl;
         break;
 
         case 2:
-          std::cout<<"Enter fuel consumption in Miles per Gallon: ";
+          std::cout<<"Unesite potrosnju u MPG: ";
           std::cin>>fuel;
-          std::cout<<fuel<<" Miles per Gallon is "<<Fuel::literPer100kmToMpgCoeff/fuel<<" Liters per 100km"<<std::endl;
+          std::cout<<fuel<<" MPG je "<<Fuel::literPer100kmToMpgCoeff/fuel<<" L/100km"<<std::endl;
         break;
 
         default:
-          std::cout<<"Wrong choice!"<<std::endl;
+          std::cout<<"Pogresan izbor!"<<std::endl;
         break;
       }
       break;
 
     default:
-      std::cout<<"Wrong choice!"<<std::endl;
+      std::cout<<"Pogresan izbor!"<<std::endl;
     break;
   }
 
